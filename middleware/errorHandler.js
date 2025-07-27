@@ -1,8 +1,10 @@
-module.exports = (err, req, res, next) => {
+// Central error handler; keeps responses consistent and hides stack traces in production.
+
+module.exports = (err, _req, res, _next) => {
   const status = err.status || err.statusCode || 500;
   const payload = {
     error: err.name || 'Error',
-    message: err.message || 'Internal Server Error',
+    message: err.message || 'Internal Server Error'
   };
   if (process.env.NODE_ENV === 'development' && err.stack) {
     payload.stack = err.stack;

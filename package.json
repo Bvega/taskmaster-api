@@ -1,7 +1,7 @@
 {
   "name": "taskmaster-api",
   "version": "1.0.0",
-  "description": "TaskMaster backend API (mod-15) — Express + MongoDB (Atlas), JWT auth, projects & tasks with ownership checks.",
+  "description": "TaskMaster backend API (mod-15) — Express + MongoDB Atlas, JWT auth, owner-only projects, nested tasks.",
   "type": "commonjs",
   "main": "server.js",
   "scripts": {
@@ -9,16 +9,7 @@
     "dev": "nodemon server.js",
     "env:example": "node -e \"console.log('PORT=4000\\nMONGO_URI=your_atlas_connection_string\\nJWT_SECRET=change_me')\" > .env.example"
   },
-  "keywords": [
-    "express",
-    "mongodb",
-    "mongoose",
-    "jwt",
-    "backend",
-    "education",
-    "taskmaster"
-  ],
-  "author": "",
+  "keywords": ["express", "mongodb", "mongoose", "jwt", "education", "taskmaster"],
   "license": "MIT",
   "dependencies": {
     "bcrypt": "^5.1.1",
@@ -27,7 +18,6 @@
     "express": "^4.19.2",
     "helmet": "^7.1.0",
     "jsonwebtoken": "^9.0.2",
-    "mongodb": "^6.18.0",
     "mongoose": "^8.5.1",
     "morgan": "^1.10.0"
   },

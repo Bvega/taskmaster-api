@@ -1,3 +1,5 @@
+// MongoDB (Mongoose) connection helper with basic logging and fail-fast on missing URI.
+
 const mongoose = require('mongoose');
 
 async function connectDB(uri) {
@@ -18,17 +20,15 @@ async function connectDB(uri) {
     console.warn('⚠️  MongoDB disconnected');
   });
 
-  // Retry-friendly options
-  const opts = {
-    autoIndex: true,
+  await mongoose.connect(uri, {
+    autoIndex: true,   // OK for dev; consider turning off in prod
     maxPoolSize: 10
-  };
+  });
 
-  await mongoose.connect(uri, opts);
   return mongoose.connection;
 }
 
-// Graceful shutdown
+// Graceful shutdown for Ctrl+C
 process.on('SIGINT', async () => {
   await mongoose.connection.close();
   console.log('🔌 MongoDB connection closed due to app termination');
